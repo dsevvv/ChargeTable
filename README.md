@@ -11,7 +11,7 @@ This mod was created as part of a task seeking employment with DoubleJump.
 - Purple Metal: Adds 100 charge.
 
 
-Fully working version of the ChargeTable mod.
+Please get the latest working jar from releases.
 
 Minecraft version: 1.12.2
 Forge version: 14.23.5.2859
