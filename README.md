@@ -3,17 +3,23 @@
 This mod was created as part of a task seeking employment with DoubleJump.
 
 ## Adds 6 New Items
-- **Charge Table:** &emsp;Used to charge a **"Charge Item"**.
+- **Charge Table:**   
+&emsp;Used to charge a **"Charge Item"**.
 
-- **Charge Item:** &emsp; Item holds a charge, it can be charged within the **"Charge Table"**.
+- **Charge Item:**   
+&emsp;Item holds a charge, it can be charged within the **"Charge Table"**.
 
-- **Blue Metal:** &emsp;&ensp;&ensp;Adds 1 charge.
+- **Blue Metal:**   
+&emsp;Adds 1 charge.
 
-- **Green Metal:** &emsp; Adds 5 charge.
+- **Green Metal:**   
+&emsp;Adds 5 charge.
 
-- **Red Metal:** &emsp;&ensp;&ensp; Adds 30 charge.
+- **Red Metal:**   
+&emsp;Adds 30 charge.
 
-- **Purple Metal:** &emsp;Adds 100 charge.
+- **Purple Metal:**   
+&emsp;Adds 100 charge.
 
 
 
