@@ -2,7 +2,7 @@
 
 This mod was created as part of a task seeking employment with DoubleJump.
 
-# Adds 6 New Items
+## Adds 6 New Items
 - **Charge Table:** &emsp;Used to charge a **"Charge Item"**.
 
 - **Charge Item:** &emsp; Item holds a charge, it can be charged within the **"Charge Table"**.
@@ -18,8 +18,8 @@ This mod was created as part of a task seeking employment with DoubleJump.
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Please get the latest working jar from [releases](https://github.com/dsevvv/ChargeTable/releases).
+**Please get the latest working jar from [releases](https://github.com/dsevvv/ChargeTable/releases).**
 
-Minecraft version: 1.12.2 
+<sub>Minecraft version: 1.12.2</sub>
 
-Forge version: 14.23.5.2859
+<sub>Forge version: 14.23.5.2859</sub>
