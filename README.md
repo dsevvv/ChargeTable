@@ -17,5 +17,4 @@ Please get the latest working jar from [releases](https://github.com/dsevvv/Char
 
 
 Minecraft version: 1.12.2
-
 Forge version: 14.23.5.2859
