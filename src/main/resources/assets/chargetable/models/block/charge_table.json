@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "chargetable:blocks/charge_table_top",
+    "side": "chargetable:blocks/charge_table_side"
+  }
+}

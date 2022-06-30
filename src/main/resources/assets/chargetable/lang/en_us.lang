@@ -1,0 +1,12 @@
+#Items
+item.blue_metal.name=Blue Metal
+item.charge_item.name=Charge Item
+item.green_metal.name=Green Metal
+item.purple_metal.name=Purple Metal
+item.red_metal.name=Red Metal
+
+#Blocks
+tile.charge_table.name=Charge Table
+
+#Creative Tab
+itemGroup.charge_table=Mod Items

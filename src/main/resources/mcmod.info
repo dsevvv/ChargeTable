@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "chargetable",
+    "name": "ChargeTable",
+    "description": "Adds a charge table to the game. The charge table will store charge within a charge item, by consuming a colored metal.",
+    "version": "1.0.0",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["dSevvv"],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
