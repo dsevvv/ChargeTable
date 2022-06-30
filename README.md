@@ -26,5 +26,5 @@ This mod was created as part of a task seeking employment with DoubleJump.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Please get the latest working jar from [releases](https://github.com/dsevvv/ChargeTable/releases).**
 
-<sub><sub>Minecraft version: 1.12.2</sub></sub>    
-<sub><sub>Forge version: 14.23.5.2859</sub></sub>    
+<sub>Minecraft version: 1.12.2</sub>   
+<sub>Forge version: 14.23.5.2859</sub>  
