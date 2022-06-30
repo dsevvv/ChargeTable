@@ -1,25 +1,24 @@
-package ca.rpgcraft.chargetable.gui.table;
+package ca.rpgcraft.chargetable.gui.container;
 
 import ca.rpgcraft.chargetable.Main;
 import ca.rpgcraft.chargetable.item.ModItems;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class ChargeTableGUI extends GuiContainer {
+public class GUIChargeTable extends GuiContainer {
 
     private static final int CHARGE_ITEM_INPUT_SLOT_INDEX = 0;
     private static final int METAL_INPUT_SLOT_INDEX = 1;
     private static final int OUTPUT_SLOT_INDEX = 2;
 
-    private final ChargeTableContainer container;
+    private final ContainerChargeTable container;
 
-    public ChargeTableGUI(InventoryPlayer player) {
+    public GUIChargeTable(InventoryPlayer player) {
 
-        super(new ChargeTableContainer(player));
-        this.container = (ChargeTableContainer) super.inventorySlots;
+        super(new ContainerChargeTable(player));
+        this.container = (ContainerChargeTable) super.inventorySlots;
     }
 
     @Override

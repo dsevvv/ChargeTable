@@ -10,3 +10,6 @@ tile.charge_table.name=Charge Table
 
 #Creative Tab
 itemGroup.charge_table=Mod Items
+
+#Entity
+entity.ghoul.name=Ghoul

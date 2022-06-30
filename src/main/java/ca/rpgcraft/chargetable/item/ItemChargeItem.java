@@ -1,6 +1,6 @@
 package ca.rpgcraft.chargetable.item;
 
-import ca.rpgcraft.chargetable.gui.creative.ModTab;
+import ca.rpgcraft.chargetable.gui.creative.CreativeTabMod;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -9,13 +9,13 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ChargeItem extends Item {
+public class ItemChargeItem extends Item {
 
-    public ChargeItem(String name) {
+    public ItemChargeItem(String name) {
         super();
         setTranslationKey(name);
         setRegistryName(name);
-        setCreativeTab(ModTab.getInstance());
+        setCreativeTab(CreativeTabMod.getInstance());
         setMaxStackSize(1);
 
     }

@@ -4,11 +4,11 @@ import ca.rpgcraft.chargetable.item.ModItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
-public class ModTab extends CreativeTabs {
+public class CreativeTabMod extends CreativeTabs {
 
-    private static ModTab instance;
+    private static CreativeTabMod instance;
 
-    private ModTab(String name) {
+    private CreativeTabMod(String name) {
         super(name);
     }
 
@@ -17,9 +17,9 @@ public class ModTab extends CreativeTabs {
         return ModItems.CHARGE_ITEM.getItem().getDefaultInstance();
     }
 
-    public static ModTab getInstance() {
+    public static CreativeTabMod getInstance() {
         if(instance == null)
-            instance = new ModTab("charge_table");
+            instance = new CreativeTabMod("charge_table");
 
         return instance;
     }

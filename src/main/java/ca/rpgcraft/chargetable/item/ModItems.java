@@ -1,6 +1,6 @@
 package ca.rpgcraft.chargetable.item;
 
-import ca.rpgcraft.chargetable.gui.creative.ModTab;
+import ca.rpgcraft.chargetable.gui.creative.CreativeTabMod;
 import net.minecraft.item.Item;
 
 public enum ModItems {
@@ -21,14 +21,14 @@ public enum ModItems {
 
         if ("charge_item".equalsIgnoreCase(name)) {
 
-            this.item = new ChargeItem(name);
+            this.item = new ItemChargeItem(name);
         }
         else {
 
             this.item = new Item()
                     .setTranslationKey(name)
                     .setRegistryName(name)
-                    .setCreativeTab(ModTab.getInstance());
+                    .setCreativeTab(CreativeTabMod.getInstance());
         }
     }
 
@@ -38,26 +38,26 @@ public enum ModItems {
 
         switch(name){
             case "blue_metal":
-                this.item = new BlueMetal(name);
+                this.item = new ItemBlueMetal(name);
                 break;
 
             case "green_metal":
-                this.item = new GreenMetal(name);
+                this.item = new ItemGreenMetal(name);
                 break;
 
             case "purple_metal":
-                this.item = new PurpleMetal(name);
+                this.item = new ItemPurpleMetal(name);
                 break;
 
             case "red_metal":
-                this.item = new RedMetal(name);
+                this.item = new ItemRedMetal(name);
                 break;
 
             default:
                 this.item = new Item()
                         .setTranslationKey(name)
                         .setRegistryName(name)
-                        .setCreativeTab(ModTab.getInstance());
+                        .setCreativeTab(CreativeTabMod.getInstance());
                 break;
         }
     }

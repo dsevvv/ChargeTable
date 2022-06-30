@@ -1,4 +1,4 @@
-package ca.rpgcraft.chargetable.gui.table;
+package ca.rpgcraft.chargetable.gui.container;
 
 import ca.rpgcraft.chargetable.item.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextComponentString;
 
-public class ChargeTableContainer extends Container {
+public class ContainerChargeTable extends Container {
 
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
@@ -25,7 +25,7 @@ public class ChargeTableContainer extends Container {
     private final InventoryPlayer playerInventory;
 
 
-    public ChargeTableContainer(InventoryPlayer playerInventory) {
+    public ContainerChargeTable(InventoryPlayer playerInventory) {
         super();
         this.playerInventory = playerInventory;
 
@@ -56,65 +56,73 @@ public class ChargeTableContainer extends Container {
 
     @Override
     public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player){
-        //stop the player from putting anything other than a charge item in the charge slot
-        if(slotId == CHARGE_ITEM_INPUT_SLOT_INDEX) {
-            ItemStack stack = player.inventory.getItemStack();
-            if(stack.isEmpty()){
+
+        ItemStack heldStack = player.inventory.getItemStack();
+        ItemStack chargeInputStack = chargeInputInventory.getStackInSlot(0);
+        ItemStack metalInputStack = metalInputInventory.getStackInSlot(0);
+        ItemStack outputStack = outputInventory.getStackInSlot(0);
+
+        switch(slotId){
+
+            case CHARGE_ITEM_INPUT_SLOT_INDEX:
+
+                //this check needs to be here otherwise the player will not be able to take items out of the charge table
+                if(heldStack.isEmpty())
+                    return super.slotClick(slotId, dragType, clickTypeIn, player);
+
+                //stop the player from putting anything other than a charge item in the charge slot
+                if(heldStack.getItem() != ModItems.CHARGE_ITEM.getItem())
+                    return ItemStack.EMPTY;
+
+                break;
+
+            case METAL_INPUT_SLOT_INDEX:
+
+                //this check needs to be here otherwise the player will not be able to take items out of the charge table
+                if(heldStack.isEmpty())
+                    return super.slotClick(slotId, dragType, clickTypeIn, player);
+
+                //stop the player from putting anything other than a colored metal in the metal slot
+                if(heldStack.getItem() != ModItems.BLUE_METAL.getItem()
+                && heldStack.getItem() != ModItems.GREEN_METAL.getItem()
+                && heldStack.getItem() != ModItems.PURPLE_METAL.getItem()
+                && heldStack.getItem() != ModItems.RED_METAL.getItem())
+                    return ItemStack.EMPTY;
+
+                break;
+
+            case OUTPUT_SLOT_INDEX:
+
+                //if the output slot is empty, block the player from putting anything in it
+                if (outputStack.isEmpty())
+                    return ItemStack.EMPTY;
+                //if the output slot is filled, take the item out of it and clear both input slots and the output slot
+                //I clear the output slot into the player's inventory (if full will drop on ground)
+                //and return EMPTY so that the player can't put anything in it while the item is being taken out
+                else if (!chargeInputStack.isEmpty()
+                     && !metalInputStack.isEmpty()
+                     && isCorrectResult(chargeInputStack, metalInputStack, outputStack)) {
+
+                    chargeInputInventory.setInventorySlotContents(0, ItemStack.EMPTY);
+                    metalInputInventory.setInventorySlotContents(0, ItemStack.EMPTY);
+                    playerInventory.player.playSound(SoundEvents.ENTITY_WITHER_SPAWN, 1.0f, 3.0f);
+                    clearContainer(player, player.world, outputInventory);
+                    return ItemStack.EMPTY;
+                }
+                //catches incorrect results and prevents the player from removing the item from the output slot
+                //clears output slot so the inventory can update the output slot with the correct item
+                else {
+
+                    player.playSound(SoundEvents.BLOCK_NOTE_PLING, 1.0f, 0.1f);
+                    outputInventory.setInventorySlotContents(0, ItemStack.EMPTY);
+                    return ItemStack.EMPTY;
+                }
+
+            default:
                 return super.slotClick(slotId, dragType, clickTypeIn, player);
-            }
-
-            if(stack.getItem() != ModItems.CHARGE_ITEM.getItem()) {
-                return ItemStack.EMPTY;
-            }
-        }
-        //stop the player from putting anything other than a colored metal in the metal slot
-        if(slotId == METAL_INPUT_SLOT_INDEX) {
-            ItemStack stack = player.inventory.getItemStack();
-            if(stack.isEmpty()){
-                return super.slotClick(slotId, dragType, clickTypeIn, player);
-            }
-
-            if(stack.getItem() != ModItems.BLUE_METAL.getItem()
-            && stack.getItem() != ModItems.GREEN_METAL.getItem()
-            && stack.getItem() != ModItems.PURPLE_METAL.getItem()
-            && stack.getItem() != ModItems.RED_METAL.getItem()) {
-
-                return ItemStack.EMPTY;
-            }
         }
 
-        //output logic
-        if (slotId == OUTPUT_SLOT_INDEX) {
-            //if the output slot is empty, block the player from putting anything in it
-            if (outputInventory.getStackInSlot(0).isEmpty()) {
-
-                return ItemStack.EMPTY;
-            }
-            //if the output slot is filled, take the item out of it and clear both input slots and the output slot
-            //I clear the output slot into the player's inventory (if full will drop on ground)
-            //and return EMPTY so that the player can't put anything in it while the item is being taken out
-            else if (!chargeInputInventory.getStackInSlot(0).isEmpty()
-                 && !metalInputInventory.getStackInSlot(0).isEmpty()
-                 && isCorrectResult(chargeInputInventory.getStackInSlot(0), metalInputInventory.getStackInSlot(0), outputInventory.getStackInSlot(0))) {
-
-                chargeInputInventory.setInventorySlotContents(0, ItemStack.EMPTY);
-                metalInputInventory.setInventorySlotContents(0, ItemStack.EMPTY);
-                playerInventory.player.playSound(SoundEvents.ENTITY_WITHER_SPAWN, 1.0f, 3.0f);
-                clearContainer(player, player.world, outputInventory);
-                return ItemStack.EMPTY;
-            }
-            //catches incorrect results and prevents the player from removing the item from the output slot
-            //clears output slot so the inventory can update the output slot with the correct item
-            else {
-
-                player.sendMessage(new TextComponentString("Oops! Incorrect result! Try clicking again."));
-                player.playSound(SoundEvents.BLOCK_NOTE_PLING, 1.0f, 0.1f);
-                outputInventory.setInventorySlotContents(0, ItemStack.EMPTY);
-                return ItemStack.EMPTY;
-            }
-        }
-        else
-            return super.slotClick(slotId, dragType, clickTypeIn, player);
+        return super.slotClick(slotId, dragType, clickTypeIn, player);
     }
 
     @Override
@@ -258,7 +266,7 @@ public class ChargeTableContainer extends Container {
         clearContainer(playerIn, playerIn.world, metalInputInventory);
     }
 
-    protected boolean isCorrectResult(ItemStack inputChargeStack, ItemStack inputMetalStack, ItemStack outputStack){
+    private boolean isCorrectResult(ItemStack inputChargeStack, ItemStack inputMetalStack, ItemStack outputStack){
         if(outputStack.isEmpty()){
             return false;
         }
