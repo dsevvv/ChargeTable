@@ -32,7 +32,7 @@ public class EntityAIGhoulLeap extends EntityAILeapAtTarget {
         {
             double d0 = this.leaper.getDistanceSq(this.leapTarget);
 
-            if (d0 >= 8.0D && d0 <= 128.0D)
+            if (d0 >= 6.0D && d0 <= 128.0D)
             {
                 if (!this.leaper.onGround)
                 {
