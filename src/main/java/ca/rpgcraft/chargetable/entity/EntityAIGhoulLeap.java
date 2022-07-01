@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 
 public class EntityAIGhoulLeap extends EntityAILeapAtTarget {
@@ -58,9 +59,9 @@ public class EntityAIGhoulLeap extends EntityAILeapAtTarget {
     @Override
     public void startExecuting()
     {
-        EntityGhoul ghoul = (EntityGhoul) leaper;
+        EntityGhoul ghoul = (EntityGhoul) this.leaper;
         ghoul.setAggressive(true);
-        leaper.getNavigator().tryMoveToEntityLiving(leapTarget, leapMotionY);
+        this.leaper.getNavigator().tryMoveToEntityLiving(leapTarget, leapMotionY);
 
         double d0 = this.leapTarget.posX - this.leaper.posX;
         double d1 = this.leapTarget.posZ - this.leaper.posZ;
@@ -68,10 +69,11 @@ public class EntityAIGhoulLeap extends EntityAILeapAtTarget {
 
         if ((double)f >= 1.0E-4D)
         {
-            this.leaper.motionX += d0 / (double)f * 0.5D * 0.800000011920929D + this.leaper.motionX * 0.80000000298023224D;
-            this.leaper.motionZ += d1 / (double)f * 0.5D * 0.800000011920929D + this.leaper.motionZ * 0.80000000298023224D;
+            this.leaper.motionX += d0 / (double)f * 0.5D * 0.800000011920929D + this.leaper.motionX * 0.80000000298023224D + .1;
+            this.leaper.motionZ += d1 / (double)f * 0.5D * 0.800000011920929D + this.leaper.motionZ * 0.80000000298023224D + .1;
         }
 
         this.leaper.motionY = (double)this.leapMotionY;
+        this.leaper.playSound(SoundEvents.ENTITY_ENDERDRAGON_GROWL, 0.5F, 4.0F);
     }
 }
