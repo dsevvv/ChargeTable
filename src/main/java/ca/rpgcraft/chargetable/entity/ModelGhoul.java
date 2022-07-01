@@ -135,9 +135,17 @@ public class ModelGhoul extends ModelBase {
 	
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
-		// flap wings
-		this.WingL.rotateAngleY = (MathHelper.cos(ageInTicks * 3F) * 1.4F * limbSwingAmount + 0.570796F) * 1.4F;
-		this.WingR.rotateAngleY = (MathHelper.cos(ageInTicks * 3F + (float) Math.PI) * 1.4F * limbSwingAmount - 0.570796F) * 1.4F;
+		if(entityIn.motionY >= .005F){
+			// flap wings quickly
+			this.WingL.rotateAngleY = (float) ((MathHelper.cos(ageInTicks * 3F) * 1.4F * entityIn.motionY + 0.570796F) * 1.4F);
+			this.WingR.rotateAngleY = (float) ((MathHelper.cos(ageInTicks * 3F + (float) Math.PI) * 1.4F * entityIn.motionY - 0.570796F) * 1.4F);
+		}
+		else{
+			// flap wings slowly
+			this.WingL.rotateAngleY = (float) ((MathHelper.cos(ageInTicks * 0.5F) * 1.4F * scaleFactor + 0.570796F) * 1.4F);
+			this.WingR.rotateAngleY = (float) ((MathHelper.cos(ageInTicks * 0.5F + (float) Math.PI) * 1.4F * scaleFactor - 0.570796F) * 1.4F);
+		}
+
 
 
 		//change state based on target
