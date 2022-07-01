@@ -144,7 +144,7 @@ public class ModelGhoul extends ModelBase {
 		//change state based on target
 		EntityGhoul entityGhoul = (EntityGhoul) entityIn;
 		boolean aggresive = entityGhoul.isAggressive();
-		System.out.println(aggresive);
+		//System.out.println(aggresive);
 
 		// slowly turn arms towards angle 1.0F if entityGhoul state is SLEEPING
 		// otherwise, turn arms towards angle 0.0F
