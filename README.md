@@ -21,6 +21,10 @@ This mod was created as part of a task seeking employment with DoubleJump.
 - **Purple Metal:**   
 &emsp;Adds 100 charge.
 
+## 1 New Entity
+- **Ghoul:**  
+&emsp;Leaps towards players and villagers. Haunts all living creatures.
+
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
