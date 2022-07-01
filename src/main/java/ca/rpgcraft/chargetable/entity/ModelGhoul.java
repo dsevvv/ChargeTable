@@ -135,7 +135,7 @@ public class ModelGhoul extends ModelBase {
 	
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
-		if(entityIn.motionY >= .005F){
+		if(entityIn.motionY >= .0015F) {
 			// flap wings quickly
 			this.WingL.rotateAngleY = (float) ((MathHelper.cos(ageInTicks * 3F) * 1.4F * entityIn.motionY + 0.570796F) * 1.4F);
 			this.WingR.rotateAngleY = (float) ((MathHelper.cos(ageInTicks * 3F + (float) Math.PI) * 1.4F * entityIn.motionY - 0.570796F) * 1.4F);
@@ -146,9 +146,6 @@ public class ModelGhoul extends ModelBase {
 			this.WingR.rotateAngleY = (float) ((MathHelper.cos(ageInTicks * 0.5F + (float) Math.PI) * 1.4F * scaleFactor - 0.570796F) * 1.4F);
 		}
 
-
-
-		//change state based on target
 		EntityGhoul entityGhoul = (EntityGhoul) entityIn;
 		boolean aggresive = entityGhoul.isAggressive();
 
