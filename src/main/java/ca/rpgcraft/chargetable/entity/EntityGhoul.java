@@ -55,11 +55,6 @@ public class EntityGhoul extends EntityMob {
         targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityIronGolem.class, true));
     }
 
-    @Override
-    public void onDeath(DamageSource cause) {
-        super.onDeath(cause);
-    }
-
     protected void clearTasks(){
         tasks.taskEntries.clear();
         targetTasks.taskEntries.clear();
