@@ -2,7 +2,7 @@
 
 This mod was created as part of a task seeking employment with DoubleJump.
 
-## Adds 6 New Items
+## 6 New Items
 - **Charge Table:**   
 &emsp;Used to charge a **"Charge Item"**.
 
