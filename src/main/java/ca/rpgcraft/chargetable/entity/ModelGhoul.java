@@ -24,6 +24,8 @@ public class ModelGhoul extends ModelBase {
 	private final ModelRenderer wingl3_r1;
 	private final ModelRenderer wingl2_r1;
 
+	private int updateCounter = 0;
+
 	public ModelGhoul() {
 		textureWidth = 128;
 		textureHeight = 64;
@@ -133,13 +135,12 @@ public class ModelGhoul extends ModelBase {
 	
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+		this.updateCounter++;
 		// flap wings
-		// right now these models collide with each other, but the animation looks good enough for this purpose
-		// this is my first experience animating a model, so I am excited to discuss strategies for improving the animation
-		// with other DoubleJump devs if I get the chance
-		float flap = MathHelper.cos(ageInTicks * 0.6F);
-		this.WingL.rotateAngleY = flap * 0.75F;
-		this.WingR.rotateAngleY = - flap * 0.75F;
+		if(updateCounter % 3 == 0){
+			this.WingL.rotateAngleY = (MathHelper.cos(ageInTicks * 3F) * 1.4F * scaleFactor + 0.570796F) * 2.35F;
+			this.WingR.rotateAngleY = (MathHelper.cos(ageInTicks * 3F + (float) Math.PI) * 1.4F * scaleFactor - 0.570796F) * 2.35F;
+		}
 
 		//change state based on target
 		EntityGhoul entityGhoul = (EntityGhoul) entityIn;
