@@ -137,13 +137,19 @@ public class ModelGhoul extends ModelBase {
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
 		if(entityIn.motionY >= .0015F) {
 			// flap wings quickly
-			this.WingL.rotateAngleY = (float) ((MathHelper.cos(ageInTicks * 3F) * 1.4F * entityIn.motionY + 0.570796F) * 1.4F);
-			this.WingR.rotateAngleY = (float) ((MathHelper.cos(ageInTicks * 3F + (float) Math.PI) * 1.4F * entityIn.motionY - 0.570796F) * 1.4F);
+			float speed = 3.0F;
+			float multiplier = 1.4F;
+			float range = 0.570796F;
+			this.WingL.rotateAngleY = (float) ((MathHelper.cos(ageInTicks * speed) * multiplier * entityIn.motionY + range) * multiplier);
+			this.WingR.rotateAngleY = (float) ((MathHelper.cos(ageInTicks * speed + (float) Math.PI) * multiplier * entityIn.motionY - range) * multiplier);
 		}
 		else{
 			// flap wings slowly
-			this.WingL.rotateAngleY = (float) ((MathHelper.cos(ageInTicks * 0.5F) * 1.4F * scaleFactor + 0.570796F) * 1.4F);
-			this.WingR.rotateAngleY = (float) ((MathHelper.cos(ageInTicks * 0.5F + (float) Math.PI) * 1.4F * scaleFactor - 0.570796F) * 1.4F);
+			float speed = 0.5F;
+			float multiplier = 1.4F;
+			float range = 0.570796F;
+			this.WingL.rotateAngleY = ((MathHelper.cos(ageInTicks * speed) * multiplier * scaleFactor + range) * multiplier);
+			this.WingR.rotateAngleY = ((MathHelper.cos(ageInTicks * speed + (float) Math.PI) * multiplier * scaleFactor - range) * multiplier);
 		}
 
 		EntityGhoul entityGhoul = (EntityGhoul) entityIn;
